@@ -1,5 +1,19 @@
 {% extends 'ClemacPortfolioBundle::layout.html.twig' %}
 
-{% block body %}
-	home
-{% endblock %}
+{% block bodycontent %}
+  <div id="acceuil">
+    <h6 class="cv">Ma motivation</h6>
+
+    <p>
+      Je suis un jeune Développeur web tout juste sorti des études. Je possède une Licence Professionnelle dans le multimédia ainsi qu’un DUT dans le même domaine.
+    </p>
+    <p>
+      Après avoir mis en pratique mes connaissances lors de mes stages de fin d’études dans une entreprise dans les technologies du web, je suis particulièrement motivé afin d’intégrer une agence web et de faire partie d’une équipe dynamique.
+    </p>
+    <h6 class="real">Réalisation</h6>
+
+    {% for i in 0..3 %}
+      <a href="#" title="#" class="real"><img src="#" /></a>
+    {% endfor %}
+  </div>
+{% endblock bodycontent %}

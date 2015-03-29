@@ -1,2 +1,59 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}Portfolio de Clément THORET{% endblock %}
+
+{% block stylesheets %}
+  <link href="{{ asset('/bundles/clemacportfolio/css/style.css') }}" rel="stylesheet" type="text/css" />
+{% endblock stylesheets %}
+
+{% block javascriptsHead %}
+  <!-- Srpte réseaux sociaux -->
+  <script type="text/javascript" src="{{ asset('/bundles/clemacportfolio/js/verifchamps') }}"></script>
+  <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+    {lang: 'fr'}
+  </script>
+
+  <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-13016341-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+{% endblock javascriptsHead %}
+
+
+{% block body %}
+  {% set route = app.request.attributes.get('_route') %}
+
+  <div id="centre-site">
+    <h1>
+      <a href="{{ path('clemac_portfolio_front_home') }}" title="Portfolio de Célement THORET développeur web">
+        <img src="{{ asset('/bundles/clemacportfolio/images/Clement-thoret_web-developpeur.png') }}" alt="Clément thoret" />
+      </a>
+    </h1>
+
+    {{ include('ClemacPortfolioBundle:Front/Default:_menu.html.twig', {'route': route}) }}
+
+    <div id="centre">
+      <div class="haut"></div>
+      <div class="ombre">
+        <div id="site">
+          <div id="titre" class="{% block titleClass %}titre1{% endblock %}">
+            <h2>Clément, <strong>développeur Web, intégrateur.</strong></h2>
+          </div>
+
+          {% block bodycontent %}{% endblock %}
+        </div>
+      </div>
+      <div class="bas"></div>
+      {{ include('ClemacPortfolioBundle:Front/Default:_footer.html.twig') }}
+    </div>
+  </div>
+  {{ include('ClemacPortfolioBundle:Front/Cv:_cv_home_block.html.twig') }}
+{% endblock body %}

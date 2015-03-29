@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        {% block javascriptsHead %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascriptsBody %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Site perso de Clément Thoret{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    {% block javascriptsHead %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  </head>
+  <body>
+    {% block body %}{% endblock %}
+    {% block javascriptsBody %}{% endblock %}
+  </body>
 </html>
