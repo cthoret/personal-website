@@ -9,11 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
-     * @Template()
+     * @Route("/", name="clemac_portfolio_front_home")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return $this->render('ClemacPortfolioBundle:Front/Default:home.html.twig', [
+        ]);
     }
 }
