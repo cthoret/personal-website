@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/dashboard")
+     * @Route("/dashboard", name="clemac_portfolio_admin_dashboard")
      * @Template()
      */
     public function dashboardAction()

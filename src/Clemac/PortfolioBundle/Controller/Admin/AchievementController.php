@@ -21,7 +21,7 @@ class AchievementController extends Controller
     /**
      * Lists all Achievement entities.
      *
-     * @Route("/", name="admin_achievement")
+     * @Route("/", name="clemac_portfolio_admin_achievement")
      * @Method("GET")
      * @Template()
      */
@@ -38,7 +38,7 @@ class AchievementController extends Controller
     /**
      * Creates a new Achievement entity.
      *
-     * @Route("/", name="admin_achievement_create")
+     * @Route("/", name="clemac_portfolio_admin_achievement_create")
      * @Method("POST")
      * @Template("ClemacPortfolioBundle:Achievement:new.html.twig")
      */
@@ -53,7 +53,7 @@ class AchievementController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_achievement_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('clemac_portfolio_admin_achievement_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -72,7 +72,7 @@ class AchievementController extends Controller
     private function createCreateForm(Achievement $entity)
     {
         $form = $this->createForm(new AchievementType(), $entity, array(
-            'action' => $this->generateUrl('admin_achievement_create'),
+            'action' => $this->generateUrl('clemac_portfolio_admin_achievement_create'),
             'method' => 'POST',
         ));
 
@@ -84,7 +84,7 @@ class AchievementController extends Controller
     /**
      * Displays a form to create a new Achievement entity.
      *
-     * @Route("/new", name="admin_achievement_new")
+     * @Route("/new", name="clemac_portfolio_admin_achievement_new")
      * @Method("GET")
      * @Template()
      */
@@ -100,34 +100,9 @@ class AchievementController extends Controller
     }
 
     /**
-     * Finds and displays a Achievement entity.
-     *
-     * @Route("/{id}", name="admin_achievement_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ClemacPortfolioBundle:Achievement')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Achievement entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
      * Displays a form to edit an existing Achievement entity.
      *
-     * @Route("/{id}/edit", name="admin_achievement_edit")
+     * @Route("/{id}/edit", name="clemac_portfolio_admin_achievement_edit")
      * @Method("GET")
      * @Template()
      */
@@ -161,7 +136,7 @@ class AchievementController extends Controller
     private function createEditForm(Achievement $entity)
     {
         $form = $this->createForm(new AchievementType(), $entity, array(
-            'action' => $this->generateUrl('admin_achievement_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('clemac_portfolio_admin_achievement_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,7 +147,7 @@ class AchievementController extends Controller
     /**
      * Edits an existing Achievement entity.
      *
-     * @Route("/{id}", name="admin_achievement_update")
+     * @Route("/{id}", name="clemac_portfolio_admin_achievement_update")
      * @Method("PUT")
      * @Template("ClemacPortfolioBundle:Achievement:edit.html.twig")
      */
@@ -193,7 +168,7 @@ class AchievementController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_achievement_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('clemac_portfolio_admin_achievement_edit', array('id' => $id)));
         }
 
         return array(
@@ -205,7 +180,7 @@ class AchievementController extends Controller
     /**
      * Deletes a Achievement entity.
      *
-     * @Route("/{id}", name="admin_achievement_delete")
+     * @Route("/{id}", name="clemac_portfolio_admin_achievement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -225,7 +200,7 @@ class AchievementController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_achievement'));
+        return $this->redirect($this->generateUrl('clemac_portfolio_admin_achievement'));
     }
 
     /**
@@ -238,7 +213,7 @@ class AchievementController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_achievement_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('clemac_portfolio_admin_achievement_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

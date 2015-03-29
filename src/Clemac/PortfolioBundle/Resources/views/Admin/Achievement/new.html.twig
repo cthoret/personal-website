@@ -1,13 +1,25 @@
-{% extends '::base.html.twig' %}
+{% extends 'ClemacPortfolioBundle::layout_admin.html.twig' %}
 
-{% block body -%}
+{% block title %}Nouveau projet - {{ parent() }}{% endblock %}
+
+{% block breadcrumbTitle %}
+  <i class="fa fa-code"></i> Site web
+  <small>Nouveau projet</small>
+{% endblock %}
+
+{% block breadcrumbLink %}
+  <li><a href="{{ path('clemac_portfolio_admin_achievement') }}"><i class="fa fa-code"></i> Site web</a></li>
+  <li class="active">Nouveau projet</li>
+{% endblock breadcrumbLink %}
+
+{% block bodycontent %}
     <h1>Achievement creation</h1>
 
     {{ form(form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('admin_achievement') }}">
+        <a href="{{ path('clemac_portfolio_admin_achievement') }}">
             Back to the list
         </a>
     </li>

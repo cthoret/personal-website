@@ -21,7 +21,7 @@ class VideoController extends Controller
     /**
      * Lists all Video entities.
      *
-     * @Route("/", name="video")
+     * @Route("/", name="clemac_portfolio_admin_video")
      * @Method("GET")
      * @Template()
      */
@@ -38,7 +38,7 @@ class VideoController extends Controller
     /**
      * Creates a new Video entity.
      *
-     * @Route("/", name="video_create")
+     * @Route("/", name="clemac_portfolio_admin_video_create")
      * @Method("POST")
      * @Template("ClemacPortfolioBundle:Video:new.html.twig")
      */
@@ -53,7 +53,7 @@ class VideoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('video_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('clemac_portfolio_admin_video_edit', array('id' => $entity->getId())));
         }
 
         return array(
@@ -72,7 +72,7 @@ class VideoController extends Controller
     private function createCreateForm(Video $entity)
     {
         $form = $this->createForm(new VideoType(), $entity, array(
-            'action' => $this->generateUrl('video_create'),
+            'action' => $this->generateUrl('clemac_portfolio_admin_video_create'),
             'method' => 'POST',
         ));
 
@@ -84,7 +84,7 @@ class VideoController extends Controller
     /**
      * Displays a form to create a new Video entity.
      *
-     * @Route("/new", name="video_new")
+     * @Route("/new", name="clemac_portfolio_admin_video_new")
      * @Method("GET")
      * @Template()
      */
@@ -100,34 +100,9 @@ class VideoController extends Controller
     }
 
     /**
-     * Finds and displays a Video entity.
-     *
-     * @Route("/{id}", name="video_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('ClemacPortfolioBundle:Video')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Video entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
      * Displays a form to edit an existing Video entity.
      *
-     * @Route("/{id}/edit", name="video_edit")
+     * @Route("/{id}/edit", name="clemac_portfolio_admin_video_edit")
      * @Method("GET")
      * @Template()
      */
@@ -161,7 +136,7 @@ class VideoController extends Controller
     private function createEditForm(Video $entity)
     {
         $form = $this->createForm(new VideoType(), $entity, array(
-            'action' => $this->generateUrl('video_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('clemac_portfolio_admin_video_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,7 +147,7 @@ class VideoController extends Controller
     /**
      * Edits an existing Video entity.
      *
-     * @Route("/{id}", name="video_update")
+     * @Route("/{id}", name="clemac_portfolio_admin_video_update")
      * @Method("PUT")
      * @Template("ClemacPortfolioBundle:Video:edit.html.twig")
      */
@@ -193,7 +168,7 @@ class VideoController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('video_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('clemac_portfolio_admin_video_edit', array('id' => $id)));
         }
 
         return array(
@@ -205,7 +180,7 @@ class VideoController extends Controller
     /**
      * Deletes a Video entity.
      *
-     * @Route("/{id}", name="video_delete")
+     * @Route("/{id}", name="clemac_portfolio_admin_video_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -238,7 +213,7 @@ class VideoController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('video_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('clemac_portfolio_admin_video_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

@@ -1,13 +1,25 @@
-{% extends '::base.html.twig' %}
+{% extends 'ClemacPortfolioBundle::layout_admin.html.twig' %}
 
-{% block body -%}
+{% block title %}Édition vidéo - {{ parent() }}{% endblock %}
+
+{% block breadcrumbTitle %}
+  <i class="fa fa-film"></i> Vidéo
+  <small>{{  entity.title  }}</small>
+{% endblock %}
+
+{% block breadcrumbLink %}
+  <li><a href="{{ path('clemac_portfolio_admin_achievement') }}"><i class="fa fa-film"></i> Vidéo</a></li>
+  <li class="active"><a href="{{ path('clemac_portfolio_admin_achievement') }}">Édition d'une vidéo</a></li>
+{% endblock breadcrumbLink %}
+
+{% block bodycontent %}
     <h1>Video edit</h1>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('video') }}">
+        <a href="{{ path('clemac_portfolio_admin_video') }}">
             Back to the list
         </a>
     </li>

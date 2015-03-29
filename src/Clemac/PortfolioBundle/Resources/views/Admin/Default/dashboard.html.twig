@@ -1,7 +1,17 @@
-{% extends "::base.html.twig" %}
+{% extends 'ClemacPortfolioBundle::layout_admin.html.twig' %}
 
-{% block title %}ClemacPortfolioBundle:Admin/Default:dashboard{% endblock %}
+{% block title %}Dashboard - {{ parent() }}{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Default:dashboard page</h1>
+{% block breadcrumbTitle %}
+  Dashboard
+  <small>Control panel</small>
+{% endblock %}
+
+{% block breadcrumbLink %}
+  <li><a href="{{ path('clemac_portfolio_admin_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li class="active">Dashboard</li>
+{% endblock breadcrumbLink %}
+
+{% block bodycontent %}
+	<h1>Welcome to the Default:dashboard page</h1>
 {% endblock %}

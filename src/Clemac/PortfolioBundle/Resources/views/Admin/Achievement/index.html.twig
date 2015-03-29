@@ -1,6 +1,18 @@
-{% extends '::base.html.twig' %}
+{% extends 'ClemacPortfolioBundle::layout_admin.html.twig' %}
 
-{% block body -%}
+{% block title %}Projet - {{ parent() }}{% endblock %}
+
+{% block breadcrumbTitle %}
+  <i class="fa fa-code"></i> Site web
+  <small>Liste des projets</small>
+{% endblock %}
+
+{% block breadcrumbLink %}
+  <li><a href="{{ path('clemac_portfolio_admin_achievement') }}"><i class="fa fa-code"></i> Site web</a></li>
+  <li class="active"><a href="{{ path('clemac_portfolio_admin_achievement') }}">index</a></li>
+{% endblock breadcrumbLink %}
+
+{% block bodycontent %}
     <h1>Achievement list</h1>
 
     <table class="records_list">
@@ -17,18 +29,15 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_achievement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('clemac_portfolio_admin_achievement_edit', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.description }}</td>
-                <td>{{ entity.file }}</td>
+                <td>{{ entity.image }}</td>
                 <td>{{ entity.url }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('admin_achievement_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_achievement_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('clemac_portfolio_admin_achievement_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -39,7 +48,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('admin_achievement_new') }}">
+            <a href="{{ path('clemac_portfolio_admin_achievement_new') }}">
                 Create a new entry
             </a>
         </li>
