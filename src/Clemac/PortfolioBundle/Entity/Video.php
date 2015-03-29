@@ -46,7 +46,7 @@ class Video
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,14 +62,14 @@ class Video
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -85,14 +85,14 @@ class Video
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -108,14 +108,14 @@ class Video
     public function setIfram($ifram)
     {
         $this->ifram = $ifram;
-    
+
         return $this;
     }
 
     /**
      * Get ifram
      *
-     * @return string 
+     * @return string
      */
     public function getIfram()
     {

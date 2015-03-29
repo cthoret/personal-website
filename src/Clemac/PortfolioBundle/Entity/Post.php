@@ -60,7 +60,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,14 +76,14 @@ class Post
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -99,14 +99,14 @@ class Post
     public function setContent($content)
     {
         $this->content = $content;
-    
+
         return $this;
     }
 
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -122,14 +122,14 @@ class Post
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
     /**
      * Get file
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -145,14 +145,14 @@ class Post
     public function setCreat($creat)
     {
         $this->creat = $creat;
-    
+
         return $this;
     }
 
     /**
      * Get creat
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreat()
     {
@@ -168,14 +168,14 @@ class Post
     public function setDataUpdate($dataUpdate)
     {
         $this->dataUpdate = $dataUpdate;
-    
+
         return $this;
     }
 
     /**
      * Get dataUpdate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDataUpdate()
     {

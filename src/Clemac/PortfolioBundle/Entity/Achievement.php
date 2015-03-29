@@ -53,7 +53,7 @@ class Achievement
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,14 +69,14 @@ class Achievement
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -92,14 +92,14 @@ class Achievement
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -115,14 +115,14 @@ class Achievement
     public function setImage($imgae)
     {
         $this->imgae = $imgae;
-    
+
         return $this;
     }
 
     /**
      * Get file
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -138,14 +138,14 @@ class Achievement
     public function setUrl($url)
     {
         $this->url = $url;
-    
+
         return $this;
     }
 
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
