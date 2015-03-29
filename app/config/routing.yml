@@ -1,0 +1,5 @@
+clemac_portfolio:
+    resource: "@ClemacPortfolioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
