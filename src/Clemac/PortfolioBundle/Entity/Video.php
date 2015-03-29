@@ -38,7 +38,7 @@ class Video
     /**
      * @var string
      *
-     * @ORM\Column(name="ifram", type="text")
+     * @ORM\Column(name="iframe", type="text")
      */
     private $iframe;
 
@@ -100,14 +100,14 @@ class Video
     }
 
     /**
-     * Set ifram
+     * Set iframe
      *
-     * @param string $ifram
+     * @param string $iframe
      * @return Video
      */
-    public function setIfram($ifram)
+    public function setIframe($iframe)
     {
-        $this->ifram = $ifram;
+        $this->iframe = $iframe;
 
         return $this;
     }
@@ -117,8 +117,8 @@ class Video
      *
      * @return string
      */
-    public function getIfram()
+    public function getIframe()
     {
-        return $this->ifram;
+        return $this->iframe;
     }
 }
