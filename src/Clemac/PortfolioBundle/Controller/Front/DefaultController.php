@@ -1,6 +1,6 @@
 <?php
 
-namespace Clemac\PortfolioBundle\Controller;
+namespace Clemac\PortfolioBundle\Controller\Front;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

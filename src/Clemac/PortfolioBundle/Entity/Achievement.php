@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class achievement
+class Achievement
 {
     /**
      * @var integer
@@ -38,9 +38,9 @@ class achievement
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="blob")
+     * @ORM\Column(name="imgae", type="string", length=255)
      */
-    private $file;
+    private $imgae;
 
     /**
      * @var string
@@ -107,14 +107,14 @@ class achievement
     }
 
     /**
-     * Set file
+     * Set string
      *
-     * @param string $file
+     * @param string $imgae
      * @return achievement
      */
-    public function setFile($file)
+    public function setImage($imgae)
     {
-        $this->file = $file;
+        $this->imgae = $imgae;
     
         return $this;
     }
@@ -124,9 +124,9 @@ class achievement
      *
      * @return string 
      */
-    public function getFile()
+    public function getImage()
     {
-        return $this->file;
+        return $this->imgae;
     }
 
     /**

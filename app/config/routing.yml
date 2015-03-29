@@ -1,5 +1,9 @@
-clemac_portfolio:
-    resource: "@ClemacPortfolioBundle/Controller/"
+clemac_portfolio_front:
+    resource: "@ClemacPortfolioBundle/Controller/Front"
     type:     annotation
     prefix:   /
 
+clemac_portfolio_admin:
+    resource: "@ClemacPortfolioBundle/Controller/Admin"
+    type:     annotation
+    prefix:   /admin

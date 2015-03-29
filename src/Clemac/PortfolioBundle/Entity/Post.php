@@ -36,6 +36,13 @@ class Post
     private $content;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="creat", type="datetime")
@@ -104,6 +111,29 @@ class Post
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set string
+     *
+     * @param string $image
+     * @return achievement
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
