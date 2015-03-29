@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * achievement
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Clemac\PortfolioBundle\Entity\AchievementRepository")
  */
 class Achievement
 {

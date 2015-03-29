@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Video
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Clemac\PortfolioBundle\Entity\VideoRepository")
  */
 class Video
 {
