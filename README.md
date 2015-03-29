@@ -17,6 +17,19 @@ At the root of the project :
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
 
+### Install less.css
+
+Linux
+
+    sudo apt-get install npm
+    sudo npm install -g less@1.7.5
+
+### Install uglify
+
+    sudo npm install -g uglify-js
+    sudo npm install -g uglifycss
+
+
  2) Server setup
 ----------------
 

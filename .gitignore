@@ -5,6 +5,7 @@
 /app/logs/*
 /bin/
 /vendor/
-#/web/
 /web/bundles/
+/web/css/compiled/
+/web/js/compiled/
 /composer.phar

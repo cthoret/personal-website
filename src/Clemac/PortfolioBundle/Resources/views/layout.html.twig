@@ -3,17 +3,24 @@
 {% block title %}Portfolio de Clément THORET{% endblock %}
 
 {% block stylesheets %}
-  <link href="{{ asset('/bundles/clemacportfolio/css/style.css') }}" rel="stylesheet" type="text/css" />
+  {% stylesheets
+    'bundles/clemacportfolio/css/less/style.less'
+    filter='less' filter='?uglifycss' filter='cssrewrite' output='css/compiled/front_all.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
 {% endblock stylesheets %}
 
 {% block javascriptsHead %}
-  <!-- Srpte réseaux sociaux -->
-  <script type="text/javascript" src="{{ asset('/bundles/clemacportfolio/js/verifchamps') }}"></script>
+  {% javascripts
+    'bundles/clemacportfolio/js/verifchamps.js'
+    '//platform.twitter.com/widgets.js'
+    filter='?uglifyjs2' output='js/compiled/front_all.js' %}
+    <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
   <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
     {lang: 'fr'}
   </script>
 
-  <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-13016341-3']);
