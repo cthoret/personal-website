@@ -13,15 +13,30 @@
 {% endblock %}
 
 {% block bodycontent %}
-    <h1>Video creation</h1>
+  <hr />
+  <div class="box box-success">
+    <div class="box-header">
+      <h3 class="box-title">New video</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+      {{ form_start(form) }}
+        <div class="box-body">
+          {{ form_errors(form) }}
 
-    {{ form(form) }}
+          {{ form_row(form.title) }}
+          {{ form_row(form.description) }}
+          {{ form_row(form.iframe) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('clemac_portfolio_admin_video') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+          {{ form_widget(form._token) }}
+        </div><!-- /.box-body -->
+
+        <div class="box-footer">
+          <div class="pull-right">
+            <a href="{{ path('clemac_portfolio_admin_video') }}" class="btn btn-default"><i class="fa fa-list"></i> Back to the list</a>
+          </div>
+          <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Crée</button>
+        </div>
+      </form>
+    </div><!-- /.box-body -->
+  </div>
 {% endblock %}
