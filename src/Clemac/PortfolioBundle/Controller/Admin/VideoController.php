@@ -200,7 +200,7 @@ class VideoController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('video'));
+        return $this->redirect($this->generateUrl('clemac_portfolio_admin_video'));
     }
 
     /**
