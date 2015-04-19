@@ -13,16 +13,32 @@
 {% endblock breadcrumbLink %}
 
 {% block bodycontent %}
-    <h1>Achievement edit</h1>
+  <hr />
+  <div class="box box-success">
+    <div class="box-header">
+      <h3 class="box-title">Video edit</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+      {{ form_start(edit_form) }}
+        <div class="box-body">
+          {{ form_errors(edit_form) }}
 
-    {{ form(edit_form) }}
+          {{ form_row(edit_form.title) }}
+          {{ form_row(edit_form.description) }}
+          {{ form_row(edit_form.image) }}
+          {{ form_row(edit_form.url) }}
+        </div><!-- /.box-body -->
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('clemac_portfolio_admin_achievement') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        <div class="box-footer">
+          <div class="pull-right">
+            <a href="{{ path('clemac_portfolio_admin_achievement') }}" class="btn btn-default"><i class="fa fa-list"></i> Back to the list</a>
+          </div>
+          <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> Éditer</button>
+        </div>
+      </form>
+      <div style="padding-left: 10px;">
+        {{ form(delete_form) }}
+      </div>
+    </div><!-- /.box-body -->
+  </div>
 {% endblock %}
