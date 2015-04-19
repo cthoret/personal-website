@@ -40,7 +40,7 @@ Linux
 server {
     listen 80;
     server_name localhost;
-    root /var/www/axa/web;
+    root /var/www/siteWeb/web;
 
     client_max_body_size 1024M;
 
@@ -59,12 +59,6 @@ server {
         rewrite ^(.*)$ /app.php/$1 last;
     }
 
-    # for fileBundle
-    location ^~ /file/progress {
-        # report uploads tracked in the 'proxied' zone
-    }
-
-
     location ~ ^/(app|app_dev|config)\.php(/|$) {
         fastcgi_pass 127.0.0.1:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
@@ -81,7 +75,7 @@ server {
 
 ``` bash
 mkdir -p app/tmp app/files
-sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs app/tmp app/files 
+sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs app/tmp app/files
 sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs app/tmp app/files
 ```
 Replace `www-data` with the user running the web server
