@@ -74,8 +74,8 @@ server {
 --------------------
 
 ``` bash
-mkdir -p app/tmp app/files
-sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs app/tmp app/files
-sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs app/tmp app/files
+mkdir -p app/tmp app/files web/upload/
+sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs app/tmp app/files web/upload/
+sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs app/tmp app/files web/upload/
 ```
 Replace `www-data` with the user running the web server

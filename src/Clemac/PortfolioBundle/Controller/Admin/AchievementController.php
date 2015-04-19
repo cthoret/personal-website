@@ -4,11 +4,15 @@ namespace Clemac\PortfolioBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Clemac\PortfolioBundle\Entity\Achievement;
 use Clemac\PortfolioBundle\Form\AchievementType;
+
 
 /**
  * Achievement controller.
@@ -49,6 +53,13 @@ class AchievementController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            $newFilename = 'archievement-' . rand(1, 99999) . '-' . $form['image']->getData()->getClientOriginalName();
+
+            $form['image']->getData()->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('upload_path'), $newFilename);
+
+            $entity->setImage($newFilename);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -112,12 +123,16 @@ class AchievementController extends Controller
 
         $entity = $em->getRepository('ClemacPortfolioBundle:Achievement')->find($id);
 
+        $oldImage = $this->container->getParameter('upload_path') . $entity->getImage();
+        $entity->setImage(null);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Achievement entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+        $entity->setImage($oldImage);
 
         return array(
             'entity'      => $entity,

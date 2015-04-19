@@ -17,7 +17,7 @@ class AchievementType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('image')
+            ->add('image', 'file')
             ->add('url')
         ;
     }

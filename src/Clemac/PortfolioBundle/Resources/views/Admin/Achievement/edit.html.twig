@@ -25,6 +25,12 @@
 
           {{ form_row(edit_form.title) }}
           {{ form_row(edit_form.description) }}
+
+          {% if entity.image %}
+            <div class="col-sm-12">
+              <img src="{{ asset(entity.image) }}" class="img-responsive">
+            </div>
+          {% endif %}
           {{ form_row(edit_form.image) }}
           {{ form_row(edit_form.url) }}
         </div><!-- /.box-body -->

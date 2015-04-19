@@ -8,4 +8,5 @@
 /web/bundles/
 /web/css/compiled/
 /web/js/compiled/
+/web/upload/
 /composer.phar
