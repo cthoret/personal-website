@@ -38,7 +38,7 @@ class Achievement
     /**
      * @var string
      *
-     * @ORM\Column(name="imgae", type="string", length=255)
+     * @ORM\Column(name="imgae", type="string", length=255, nullable=true)
      */
     private $imgae;
 
@@ -127,6 +127,16 @@ class Achievement
     public function getImage()
     {
         return $this->imgae;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getWebPathImage()
+    {
+        return 'upload/' . $this->imgae;
     }
 
     /**

@@ -44,7 +44,7 @@ class AchievementController extends Controller
      *
      * @Route("/", name="clemac_portfolio_admin_achievement_create")
      * @Method("POST")
-     * @Template("ClemacPortfolioBundle:Achievement:new.html.twig")
+     * @Template("ClemacPortfolioBundle:Admin/Achievement:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -87,7 +87,8 @@ class AchievementController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('image', 'file')
+             ->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -123,15 +124,17 @@ class AchievementController extends Controller
 
         $entity = $em->getRepository('ClemacPortfolioBundle:Achievement')->find($id);
 
-        $oldImage = $this->container->getParameter('upload_path') . $entity->getImage();
-        $entity->setImage(null);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Achievement entity.');
         }
 
+        // remove old uplodImage
+        $oldImage = $entity->getImage();
+        $entity->setImage(null);
+
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+
         $entity->setImage($oldImage);
 
         return array(
@@ -155,7 +158,8 @@ class AchievementController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('image', 'file', array('required'    => false))
+             ->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -164,7 +168,7 @@ class AchievementController extends Controller
      *
      * @Route("/{id}", name="clemac_portfolio_admin_achievement_update")
      * @Method("PUT")
-     * @Template("ClemacPortfolioBundle:Achievement:edit.html.twig")
+     * @Template("ClemacPortfolioBundle:Admin/Achievement:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -176,11 +180,24 @@ class AchievementController extends Controller
             throw $this->createNotFoundException('Unable to find Achievement entity.');
         }
 
+        // remove old uplodImage
+        $oldImage = $entity->getImage();
+        $entity->setImage(null);
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
+        $entity->setImage($oldImage);
+
         if ($editForm->isValid()) {
+            if ($editForm['image']->getData() != null) {
+                $newFilename = 'archievement-' . rand(1, 99999) . '-' . $editForm['image']->getData()->getClientOriginalName();
+
+                $editForm['image']->getData()->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('upload_path'), $newFilename);
+
+                $entity->setImage($newFilename);
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('clemac_portfolio_admin_achievement_edit', array('id' => $id)));
