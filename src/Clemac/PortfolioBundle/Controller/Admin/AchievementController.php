@@ -4,11 +4,15 @@ namespace Clemac\PortfolioBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Clemac\PortfolioBundle\Entity\Achievement;
 use Clemac\PortfolioBundle\Form\AchievementType;
+
 
 /**
  * Achievement controller.
@@ -40,7 +44,7 @@ class AchievementController extends Controller
      *
      * @Route("/", name="clemac_portfolio_admin_achievement_create")
      * @Method("POST")
-     * @Template("ClemacPortfolioBundle:Achievement:new.html.twig")
+     * @Template("ClemacPortfolioBundle:Admin/Achievement:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -49,6 +53,13 @@ class AchievementController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            $newFilename = 'archievement-' . rand(1, 99999) . '-' . $form['image']->getData()->getClientOriginalName();
+
+            $form['image']->getData()->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('upload_path'), $newFilename);
+
+            $entity->setImage($newFilename);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -76,7 +87,8 @@ class AchievementController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('image', 'file')
+             ->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -116,8 +128,14 @@ class AchievementController extends Controller
             throw $this->createNotFoundException('Unable to find Achievement entity.');
         }
 
+        // remove old uplodImage
+        $oldImage = $entity->getImage();
+        $entity->setImage(null);
+
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+
+        $entity->setImage($oldImage);
 
         return array(
             'entity'      => $entity,
@@ -140,7 +158,8 @@ class AchievementController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('image', 'file', array('required'    => false))
+             ->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -149,7 +168,7 @@ class AchievementController extends Controller
      *
      * @Route("/{id}", name="clemac_portfolio_admin_achievement_update")
      * @Method("PUT")
-     * @Template("ClemacPortfolioBundle:Achievement:edit.html.twig")
+     * @Template("ClemacPortfolioBundle:Admin/Achievement:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -161,11 +180,24 @@ class AchievementController extends Controller
             throw $this->createNotFoundException('Unable to find Achievement entity.');
         }
 
+        // remove old uplodImage
+        $oldImage = $entity->getImage();
+        $entity->setImage(null);
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
+        $entity->setImage($oldImage);
+
         if ($editForm->isValid()) {
+            if ($editForm['image']->getData() != null) {
+                $newFilename = 'archievement-' . rand(1, 99999) . '-' . $editForm['image']->getData()->getClientOriginalName();
+
+                $editForm['image']->getData()->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('upload_path'), $newFilename);
+
+                $entity->setImage($newFilename);
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('clemac_portfolio_admin_achievement_edit', array('id' => $id)));

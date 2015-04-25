@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+parameters:
+    upload_path: 'upload/'
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }

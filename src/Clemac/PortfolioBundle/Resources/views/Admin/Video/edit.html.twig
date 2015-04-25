@@ -25,7 +25,20 @@
 
           {{ form_row(edit_form.title) }}
           {{ form_row(edit_form.description) }}
+
+          <div class="form-group">
+            <label class="control-label required" for="clemac_portfoliobundle_achievement_image">Image</label>
+            {% if entity.image %}
+              <img src="{{ asset(entity.getWebPathImage) }}" class="img-responsive" id="clemac_portfoliobundle_achievement_image_balise">
+            {% endif %}
+            {% if edit_form.image is defined %}
+              {{ form_widget(edit_form.image, {'required': false }) }}
+            {% endif %}
+          </div>
+
           {{ form_row(edit_form.iframe) }}
+
+          {{ form_widget(edit_form._token) }}
         </div><!-- /.box-body -->
 
         <div class="box-footer">
