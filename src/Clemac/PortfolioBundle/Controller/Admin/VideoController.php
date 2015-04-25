@@ -40,7 +40,7 @@ class VideoController extends Controller
      *
      * @Route("/", name="clemac_portfolio_admin_video_create")
      * @Method("POST")
-     * @Template("ClemacPortfolioBundle:Video:new.html.twig")
+     * @Template("ClemacPortfolioBundle:Admin/Video:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -49,6 +49,13 @@ class VideoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            $newFilename = 'archievement-' . rand(1, 99999) . '-' . $form['image']->getData()->getClientOriginalName();
+
+            $form['image']->getData()->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('upload_path'), $newFilename);
+
+            $entity->setImage($newFilename);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -76,7 +83,8 @@ class VideoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('image', 'file')
+             ->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -116,8 +124,14 @@ class VideoController extends Controller
             throw $this->createNotFoundException('Unable to find Video entity.');
         }
 
+        // remove old uplodImage
+        $oldImage = $entity->getImage();
+        $entity->setImage(null);
+
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+
+        $entity->setImage($oldImage);
 
         return array(
             'entity'      => $entity,
@@ -140,7 +154,8 @@ class VideoController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('image', 'file', array('required'    => false))
+             ->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -149,7 +164,7 @@ class VideoController extends Controller
      *
      * @Route("/{id}", name="clemac_portfolio_admin_video_update")
      * @Method("PUT")
-     * @Template("ClemacPortfolioBundle:Video:edit.html.twig")
+     * @Template("ClemacPortfolioBundle:Admin/Video:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -161,11 +176,24 @@ class VideoController extends Controller
             throw $this->createNotFoundException('Unable to find Video entity.');
         }
 
+        // remove old uplodImage
+        $oldImage = $entity->getImage();
+        $entity->setImage(null);
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
+        $entity->setImage($oldImage);
+
         if ($editForm->isValid()) {
+            if ($editForm['image']->getData() != null) {
+                $newFilename = 'archievement-' . rand(1, 99999) . '-' . $editForm['image']->getData()->getClientOriginalName();
+
+                $editForm['image']->getData()->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('upload_path'), $newFilename);
+
+                $entity->setImage($newFilename);
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('clemac_portfolio_admin_video_edit', array('id' => $id)));

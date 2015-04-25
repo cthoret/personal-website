@@ -38,6 +38,13 @@ class Video
     /**
      * @var string
      *
+     * @ORM\Column(name="imgae", type="string", length=255, nullable=true)
+     */
+    private $imgae;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="iframe", type="text")
      */
     private $iframe;
@@ -97,6 +104,39 @@ class Video
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set string
+     *
+     * @param string $imgae
+     * @return achievement
+     */
+    public function setImage($imgae)
+    {
+        $this->imgae = $imgae;
+
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->imgae;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getWebPathImage()
+    {
+        return 'upload/' . $this->imgae;
     }
 
     /**

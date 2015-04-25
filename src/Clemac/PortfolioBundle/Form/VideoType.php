@@ -20,7 +20,7 @@ class VideoType extends AbstractType
             ->add('iframe')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
