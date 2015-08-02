@@ -28,7 +28,7 @@
       </div><!-- /.box-header -->
       <div class="box-body">
         <div class="col-sm-12 col-md-6 col-lg-5">
-          <img src="{{ entity.image }}" class="img-responsive" />
+          <img src="{{ asset(entity.getWebPathImage) }}" class="img-responsive" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-7">
           <p>
@@ -42,4 +42,10 @@
       </div><!-- /.box-body -->
     </div>
   {% endfor %}
+
+    {% if entities|length > 0 %}
+      <p>
+        <a href="{{ path('clemac_portfolio_admin_achievement_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Create a new entry</a>
+      </p>
+    {% endif %}
 {% endblock %}
