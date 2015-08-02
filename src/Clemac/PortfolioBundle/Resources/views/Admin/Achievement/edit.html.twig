@@ -29,7 +29,10 @@
           <div class="form-group">
             <label class="control-label required" for="clemac_portfoliobundle_achievement_image">Image</label>
             {% if entity.image %}
-              <img src="{{ asset(entity.getWebPathImage) }}" class="img-responsive" id="clemac_portfoliobundle_achievement_image_balise">
+              <div class="clearfix"></div>
+              <img src="{{ asset(entity.getWebPathImage) }}" class="img-responsive col-lg-8 col-lg-offset-2" id="clemac_portfoliobundle_achievement_image_balise">
+              <div class="clearfix"></div>
+              <br />
             {% endif %}
             {% if edit_form.image is defined %}
               {{ form_widget(edit_form.image, {'required': false }) }}
