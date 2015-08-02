@@ -40,7 +40,9 @@
     </div>
   {% endfor %}
 
-  <p>
-    <a href="{{ path('clemac_portfolio_admin_video_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Create a new entry</a>
-  </p>
+  {% if entities|length > 0 %}
+    <p>
+      <a href="{{ path('clemac_portfolio_admin_video_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Create a new entry</a>
+    </p>
+  {% endif %}
 {% endblock %}
